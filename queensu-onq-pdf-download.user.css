@@ -1,0 +1,17 @@
+/* ==UserStyle==
+@name         onQ PDF Download
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Show the download button for documents on onQ (Queen's University D2L). Notably, you can download non-PDF documents as PDFs without converting them locally.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/queensu-onq-pdf-download.user.css
+==/UserStyle== */
+
+@-moz-document url-prefix("https://onq.queensu.ca/d2l/common/assets/pdfjs-d2l-dist/") {
+    button#download.hidden {
+        display: block !important;
+    }
+}

@@ -1,0 +1,17 @@
+/* ==UserStyle==
+@name         Remove Outlook.com side nav border
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Removes the bright white border on the Outlook.com vertical app navbar visible in dark mode.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/outlook-dark-side-nav-border.user.css
+==/UserStyle== */
+
+@-moz-document domain("outlook.office.com"), domain("outlook.live.com") {
+    #LeftRail {
+        border-right: none !important;
+    }
+}

@@ -1,0 +1,67 @@
+/* ==UserStyle==
+@name         BMO compact transactions table
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Remove unnecessary padding in the Bank of Montreal transactions list.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/bmo-compact-transactions.user.css
+==/UserStyle== */
+
+@-moz-document url-prefix("https://www1.bmo.com/banking/digital") {
+    /* reduce top main navbar height */
+    :root {
+        --header-height: 50px !important;
+    }
+
+    /* reduce transaction details padding */
+    app-transaction {
+        div:has(> .pre-auth-payments-nav) {
+            margin: 0 !important;
+            padding: 8px 16px !important;
+        }
+        fdc-filter {
+            margin: 0 !important;
+            padding: 8px !important;
+        }
+        .transaction-table-container {
+            padding: 0 !important;
+            border-radius: var(--cards-border-radius);
+            box-shadow: var(--cards-box-shadow);
+        }
+        app-transaction-table {
+            --table-cell-padding: 8px !important;
+            --table-cell-line-height: 1.4em !important;
+
+            th.table-heading {
+                padding: var(--table-cell-padding) !important;
+            }
+
+            .chevron-cell {
+                padding: var(--table-cell-padding) !important;
+            }
+
+            tr.section-header-container {
+                fdc-section-header > div {
+                    padding: 8px !important;
+                }
+                background: var(--ion-color-light-tint) !important;
+            }
+
+            /* fix missing column in header rows (add another if there's only one) */
+            tr.section-header-container:has(:first-child:last-child)::after {
+                display: table-cell;
+                content: '\00a0';
+            }
+        }
+    }
+
+    /* for screenshots:
+        Array.from(document.querySelectorAll("app-transaction tbody > tr"))
+            .map(row => Array.from(row.querySelectorAll("td"))
+            .map(cell => Array.from(cell.querySelectorAll("span:not(.secondary-text)")).pop()))
+            .forEach(cells => ["Jan 01, 2024", "DUMMY TRANSACTION DESCRIPTION", "$1.23"].map((v, i) => cells[i].textContent = v))
+    */
+}

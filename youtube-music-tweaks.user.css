@@ -1,0 +1,72 @@
+/* ==UserStyle==
+@name         YT Music tweaks
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Various tweaks to the YouTube Music interface. See the comments in the source code.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/youtube-music-tweaks.user.css
+==/UserStyle== */
+
+@-moz-document domain("music.youtube.com") {
+    /** Hide album art on queue panel in narrow mode. */
+    ytmusic-player-page:is([player-ui-state_="PLAYER_PAGE_OPEN"], [player-ui-state="PLAYER_PAGE_OPEN"]):not(:is([video-mode_], [video-mode])) {
+        #main-panel {
+            display: none !important;
+        }
+        #side-panel {
+            /* remove top margin (narrow), left margin (wide), but center and make wider (wide) */
+            margin: 0 auto !important;
+            flex: 1;
+        }
+        padding-top: 0 !important;
+    }
+
+    /** Clean up navbar. */
+    ytmusic-nav-bar {
+        > :is(.right-content, .center-content) {
+            padding-right: 0 !important;
+
+            /* .sign-in-link { display: none !important } */
+            ytmusic-cast-button { display: none !important; }
+        }
+    }
+    ytmusic-guide-renderer > ytmusic-guide-signin-promo-renderer {
+        display: none !important;
+    }
+
+    /** Always center search bar. */
+    ytmusic-nav-bar:not([show-search-placeholder]) > .center-content {
+        justify-content: center !important;
+    }
+
+    /** Hide full-bleed artist art. */
+    ytmusic-browse-response ytmusic-immersive-header-renderer ytmusic-fullbleed-thumbnail-renderer {
+        display: none !important;
+    }
+
+    /** Hide premium promo. */
+    ytmusic-popup-container tp-yt-paper-dialog:has(ytmusic-mealbar-promo-renderer) {
+        display: none !important;
+    }
+
+    /** Hide entire left navbar (useless without signing in). */
+    ytmusic-app[is-bauhaus-sidenav-enabled]:has(.sign-in-link) {
+        #mini-guide, #mini-guide-background {
+            display: none !important;
+        }
+        --ytmusic-guide-width: 0px;
+    }
+
+    /** Hide like buttons (not usable without signing in). */
+    ytmusic-like-button-renderer:has(.sign-in-link) {
+        display: none !important;
+    }
+
+    /** Hide artist images for cleaner UI. */
+    ytmusic-carousel [has-circle-cropped-thumbnail_] ytmusic-thumbnail-renderer {
+        visibility: hidden !important;
+    }
+}

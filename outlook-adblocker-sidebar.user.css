@@ -1,0 +1,17 @@
+/* ==UserStyle==
+@name         Remove Outlook.com ad-blocker detected sidebar
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Removes the ad-blocker detected sidebar in Outlook.com.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/outlook-adblocker-sidebar.user.css
+==/UserStyle== */
+
+@-moz-document url-prefix("https://outlook.live.com/mail/") {
+    #mainApp #MainModule [data-app-section="NavigationPane"] ~ div:has(a[href="https://go.microsoft.com/fwlink/?linkid=2222646"]):has([aria-label="Set your advertising preferences"]) {
+        display: none !important;
+    }
+}

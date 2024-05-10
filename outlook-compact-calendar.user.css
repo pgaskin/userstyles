@@ -1,0 +1,97 @@
+/* ==UserStyle==
+@name         Compact Outlook.com Calendar
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Makes the M365 day/week calendar more compact and increases the amount of room for events.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/outlook-compact-calendar.user.css
+==/UserStyle== */
+
+@-moz-document regexp("https://outlook.(live|office).com/calendar(/[0-9])?/view/(day|workweek|week)") {
+    /* collapse global nav unless hovering over edge */
+    #appContainer:not(:hover:not(:has(* > #MainModule:hover))) {
+        :has(> #MainModule) {
+            box-shadow: inset 1rem 0 0 0 var(--neutralTertiarySurface);
+            > ::after {
+                display: block;
+                opacity: 0.25;
+                content: "Hover to show navigation";
+                position: fixed;
+                top: 8px;
+                left: 4px;
+                font-size: 12px;
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+            }
+        }
+        #MainModule {
+            margin-left: 1rem !important;
+        }
+        :where(#RibbonRoot, #o365header, #LeftRail) {
+            display: none !important;
+        }
+    }
+    /* calendar widget */
+    [data-app-section="CalendarModule"] {
+        /* calendar content */
+        [data-app-section="CalendarModuleSurface"] {
+            /* header/all-day area */
+            div:has(> [style^="flex-basis:"] > div > div > time) {
+                /* make shorter */
+                height: 28px !important;
+                min-height: 28px !important;
+                /* day number */
+                > [style^="flex-basis:"] > div:has(> div:nth-child(2) > time) {
+                    flex-direction: row !important;
+                    > div:nth-child(2) {
+                        margin-top: 0 !important;
+                        > time {
+                            /* put on first line */
+                            font-size: 12px !important;
+                            margin-left: 4px !important;
+                            /* undo today styling */
+                            display: inline-block !important;
+                            vertical-align: baseline !important;
+                            background: transparent !important;
+                            color: var(--neutralPrimary) !important;
+                            font-weight: inherit !important;
+                            padding: 0 !important;
+                            height: auto !important;
+                            width: auto !important;
+                            > div {
+                                margin-top: 0 !important;
+                            }
+                        }
+                    }
+                }
+                > [style^="flex-basis:"]
+                    > div:has(> div:nth-child(2) > time > div)
+                    * {
+                    /* add better today styling */
+                    color: var(--themePrimary) !important;
+                }
+            }
+            /* day/time grid */
+            [style^="height: 1440px"] {
+                /* reduce vertical scale to fit most on the screen */
+                height: 125vh !important;
+            }
+            /* event block */
+            [draggable="true"] > [data-calitemid] {
+                /* left event accent border */
+                > div[style*="border-width: 1px"]:nth-child(1) {
+                    /* remove it */
+                    display: none !important;
+                }
+                /* event content */
+                > div[tabindex]:nth-child(2) {
+                    /* reduce padding */
+                    padding: 3px !important;
+                }
+            }
+        }
+    }
+}

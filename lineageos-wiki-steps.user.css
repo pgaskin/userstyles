@@ -1,0 +1,17 @@
+/* ==UserStyle==
+@name         Show all LineageOS Wiki steps
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Disable the pagination on step-by-step instructions.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/lineageos-wiki-steps.user.css
+==/UserStyle== */
+
+@-moz-document domain("wiki.lineageos.org") {
+    #paginated-content > * {
+        display: block !important;
+    }
+}

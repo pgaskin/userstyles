@@ -1,0 +1,23 @@
+/* ==UserStyle==
+@name         Quizlet unblur
+@version      20240510.03.35
+@namespace    https://userstyles.world/user/pgaskin
+@description  Remove the blur and auth-wall from Quizlet terms when not signed in.
+@license      No License
+@author       Patrick Gaskin
+@homepageURL  https://github.com/pgaskin/userstyles
+@supportURL   https://github.com/pgaskin/userstyles/issues
+@updateURL    https://raw.githubusercontent.com/pgaskin/userstyles/master/quizlet-unblur.user.css
+==/UserStyle== */
+
+@-moz-document domain("quizlet.com") {
+    [data-testid="set-page-card-side"] {
+        filter: none !important;
+    }
+    section.SetPageTerms-termsList + div[style][class]:last-child {
+        display: none !important;
+    }
+    #credential_picker_container {
+        display:none !important;
+    }
+}
