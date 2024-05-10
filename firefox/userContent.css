@@ -1,0 +1,16 @@
+/* cleanup private ntp */
+@-moz-document url(about:privatebrowsing) {
+  :root {
+    --in-content-page-background: rgb(28,27,34) !important;
+  }
+  body > * {
+    display: none !important;
+  }
+}
+
+@-moz-document url(about:newtab) {
+  .ds-outer-wrapper-breakpoint-override main {
+    width: auto;
+  }
+}
+

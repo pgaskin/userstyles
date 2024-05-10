@@ -1,0 +1,111 @@
+/* toolkit.legacyUserProfileCustomizations.stylesheets = true */
+
+/* compact mode:
+   browser.compactmode.show = true
+   extensions.activeThemeID = firefox-compact-dark@mozilla.org
+   browser.uidensity = 1
+   browser.tabs.inTitlebar = 0
+*/
+
+/* urlbar tweaks:
+   browser.fixup.domainsuffixwhitelist.lan = true
+   browser.urlbar.shortcuts.bookmarks = false   
+   browser.urlbar.shortcuts.history = false
+   browser.urlbar.shortcuts.tabs = false
+   browser.urlbar.suggest.bookmark = false
+   browser.urlbar.suggest.history = false
+   browser.urlbar.suggest.openpage = false
+   browser.urlbar.tipShownCount.searchTip_onboard = 4
+   browser.urlbar.tipShownCount.searchTip_redirect = 4
+   browser.urlbar.tipShownCount.tabToSearch = 60
+   browser.search.suggest.enabled = false
+   browser.newtabpage.activity-stream.topSitesRows = 2
+   configure url speed dial by choosing top sites in ntp
+   disable all but one search provider
+*/
+
+/* sideberry theming:
+   #root.root {--toolbar-fg: #e8e8ea;}
+   #root.root {--frame-fg: #b8b8ba;}
+   #root.root {--tabs-normal-fg: #e8e8ea;}
+   #root.root {--tabs-font: 0.8375rem sans-serif;}
+   set density to compact, font to xxs
+*/
+
+/* hide sidebar header and make splitter thinner for tab center and sideberry */
+#sidebar-box:is(
+  [sidebarcommand="tabcenter-reborn_ariasuni-sidebar-action"],
+  [sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]
+) {
+  #sidebar-header {
+    display: none !important;
+  }
+  + #sidebar-splitter {
+    width: 1px !important;
+  }
+}
+
+/* hide native tabs when sideberry visible */
+#main-window:has(#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"]:not([hidden])) #titlebar {
+  display: none !important;
+}
+
+/* slim tabs */
+:root {
+  --tab-min-height: 24px !important;
+}
+#TabsToolbar {
+  height: var(--tab-min-height) !important;
+}
+.titlebar-spacer[type="pre-tabs"] {
+  display: none !important;
+}
+
+/* remove tab margins */
+.tab-background[selected="true"] {
+  background: var(--toolbar-bgcolor) !important;
+}
+.tab-background {
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.tab-content {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.tab-stack {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.tabbrowser-tab {
+  padding-inline: 0 !important;
+}
+
+/* add a thin tab divider line */
+.tab-content {
+  border-right: .5px solid rgba(255,255,255,.05);
+}
+
+/* container tab context line fixes and visibility improvements */
+.tabbrowser-tab .tab-context-line {
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+  height: 3px !important;
+  opacity: 0.2;
+}
+.tabbrowser-tab[selected] .tab-context-line {
+  opacity: 0.4;
+}
+
+/* hide tab close button for unhighlighted tabs unless hovering */
+.tabbrowser-tab:not([visuallyselected="true"]):not(:hover) .tab-close-button {
+  display: none !important;
+}
+
+/* click through sound icon for pinned tabs */
+.tab-icon-overlay[pinned="true"][soundplaying="true"] {
+  pointer-events: none !important;
+}
